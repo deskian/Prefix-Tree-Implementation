@@ -7,12 +7,9 @@ describe('prefix_tree', function() {
     prefix_tree = new PrefixTree();
   });
 
-  it('should have methods named "addWords" and "findWords", and a property named "words", "prefix" and "children', function() {
+  it('should have methods named "addWords" and "findWords"', function() {
     expect(prefix_tree.addWords).to.be.a("function");
     expect(prefix_tree.findWords).to.be.a("function");
-    expect(prefix_tree.hasOwnProperty("words")).to.equal(true);
-    expect(prefix_tree.hasOwnProperty("prefix")).to.equal(true);
-    expect(prefix_tree.hasOwnProperty("children")).to.equal(true);
   });
 
   it('should have properties named "words", "prefix" and "children"', function() {
