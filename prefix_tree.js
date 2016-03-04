@@ -43,6 +43,8 @@ PrefixTree.prototype.findWords = function(str, index){
 	}
 	if(self.children[str[index]] !== undefined){
 		self.children[str[index]].findWords(str, index+1);
+	} else {
+		return false;
 	}
 
 }
