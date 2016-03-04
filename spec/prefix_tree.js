@@ -2,7 +2,7 @@
 
 describe('prefix_tree', function() {
   var prefix_tree;
-  
+
   beforeEach(function() {
     prefix_tree = new PrefixTree();
   });
@@ -23,7 +23,7 @@ describe('prefix_tree', function() {
 
   it('should be able to add words to the tree', function() {
     prefix_tree.addWords('A');
-    expect(prefix_tree.children[0].value).to.equal('A');
+    expect(prefix_tree.findWords('A')).to.equal(true)
   });
 
   it('should return true if the tree contain the word', function(){
@@ -34,16 +34,6 @@ describe('prefix_tree', function() {
   it('should return false for a word that it does not contain', function(){
     prefix_tree.addWords('RAA');
     expect(prefix_tree.findWords('nova')).to.equal(false);
-  });
-
-  it('should only add 1 letter per depth', function() {
-    prefix_tree.addWords('RAA');
-    expect(prefix_tree.children[0].children[0].value).to.equal('A');
-  });
-
-  it('should only add 1 letter per depth', function() {
-    prefix_tree.addWords('RAA');
-    expect(prefix_tree.children[0].children[0].value).to.equal('RA');
   });
 });
 

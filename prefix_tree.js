@@ -1,35 +1,48 @@
 var PrefixTree = function(){
 
-	this.words = 0;
 	this.prefix = 0;
 	this.children = [];
-	
+
 }
 PrefixTree.prototype.addWords = function(str, index){
-	//var self = this;
-	//type check and make sure str is not undefined
-	if(str && typeof str = 'string'){
+	var self = this;
+	//making sure str is not undefined
+	if(str){
 
-		var temp;
 		//make sure to start at 0 if no starting point is enter
 		index = index || 0;
 		//base case
-		if (index === str.length){
-			this.words++;
+		if (index === str.length)
+			self.words++;
 			return;
 		}
 		//keeping track of number of prefixes
-		this.prefix++;
+		self.prefix++;
 		//add new node if the letter doesn't exist
-		if(this.children[0] === undefined){
-			this.children[0] = new PrefixTree();
+		if(self.children[str[index]] === undefined){
+			self.children[str[index]] = new PrefixTree();
 		}
-		this.children.push(str[index]);
-		this.children.addWords(str,index+1);
+		self.children[str[index]].addWords(str,index+1);
 
 	}
 
 }
-PrefixTree.prototype.findWords = function(str){
+
+PrefixTree.prototype.findWords = function(str, index){
+	var self = this;
+	var tally = 0;
+	//return false for empty string
+	if(str.length === 0){
+		return false;
+	}
+	//set index at 0 if nothing enter
+	index = index || 0;
+	//base case
+	if(index === str.length && self.prefix !== 0){
+		return true;
+	}
+	if(self.children[str[index]] !== undefined){
+		self.children[str[index]].findWords(str, index+1);
+	}
 
 }
