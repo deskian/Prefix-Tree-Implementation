@@ -1,5 +1,5 @@
 var PrefixTree = function(){
-
+	this.words = 0;
 	this.prefix = 0;
 	this.children = [];
 
@@ -12,7 +12,7 @@ PrefixTree.prototype.addWords = function(str, index){
 		//make sure to start at 0 if no starting point is enter
 		index = index || 0;
 		//base case
-		if (index === str.length)
+		if (index === str.length){
 			self.words++;
 			return;
 		}
@@ -23,6 +23,7 @@ PrefixTree.prototype.addWords = function(str, index){
 			self.children[str[index]] = new PrefixTree();
 		}
 		self.children[str[index]].addWords(str,index+1);
+		self.children[str[index]].prefix = self.prefix;
 
 	}
 
@@ -42,7 +43,7 @@ PrefixTree.prototype.findWords = function(str, index){
 		return true;
 	}
 	if(self.children[str[index]] !== undefined){
-		self.children[str[index]].findWords(str, index+1);
+		return self.children[str[index]].findWords(str, index+1);
 	} else {
 		return false;
 	}
